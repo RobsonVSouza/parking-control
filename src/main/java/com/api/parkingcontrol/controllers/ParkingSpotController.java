@@ -39,15 +39,6 @@ public class ParkingSpotController {
 
     @PostMapping
     public ResponseEntity<Object> saveParkingSpot(@RequestBody @Valid ParkingSpotDto parkingSpotDto){
-        if(parkingSpotService.existsByLicensePlateCar(parkingSpotDto.getLicensePlateCar())){
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Conflict: License Plate Car is already in use!");
-        }
-        if(parkingSpotService.existsByParkingSpotNumber(parkingSpotDto.getParkingSpotNumber())){
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Conflict: Parking Spot is already in use!");
-        }
-        if(parkingSpotService.existsByApartamentAndBlock(parkingSpotDto.getApartament(),parkingSpotDto.getBlock())){
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Conflict: Parking Spot already registered for this apartament/block!");
-        }
         var parkingSpotModel = new ParkingSpotModel();
         BeanUtils.copyProperties(parkingSpotDto, parkingSpotModel);
         parkingSpotModel.setRegistrationDate(LocalDateTime.now(ZoneId.of("UTC")));
@@ -87,14 +78,6 @@ public class ParkingSpotController {
         }
         var parkingSpotModel =  parkingSpotModelOptional.get();
         parkingSpotModel.setParkingSpotNumber(parkingSpotDto.getParkingSpotNumber());
-        parkingSpotModel.setLicensePlateCar(parkingSpotDto.getLicensePlateCar());
-        parkingSpotModel.setModelCar(parkingSpotDto.getModelCar());
-        parkingSpotModel.setBrandCar(parkingSpotDto.getBrandCar());
-        parkingSpotModel.setColorCar(parkingSpotDto.getColorCar());
-        parkingSpotModel.setResponsibleName(parkingSpotDto.getResponsibleName());
-        parkingSpotModel.setApartament(parkingSpotDto.getApartament());
-        parkingSpotModel.setBlock(parkingSpotDto.getBlock());
-
         return ResponseEntity.status(HttpStatus.OK).body(parkingSpotService.save(parkingSpotModel));
     }
 }
