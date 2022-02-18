@@ -70,7 +70,7 @@ public class ParkingSpotController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> udpdateParkingSpot(@PathVariable(value = "id") UUID id,
+    public ResponseEntity<Object> updateParkingSpot(@PathVariable(value = "id") UUID id,
                                                      @RequestBody @Valid ParkingSpotDto parkingSpotDto){
         Optional<ParkingSpotModel> parkingSpotModelOptional = parkingSpotService.findByID(id);
         if (!parkingSpotModelOptional.isPresent()){
