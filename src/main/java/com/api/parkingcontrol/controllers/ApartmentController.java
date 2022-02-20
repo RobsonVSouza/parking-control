@@ -30,7 +30,7 @@ public class ApartmentController {
     public ResponseEntity<Object> saveApartment(@RequestBody @Valid ApartmentDto apartmentDto){
         var apartmentModel = new ApartmentModel();
         BeanUtils.copyProperties(apartmentDto, apartmentModel);
-        return ResponseEntity.status(HttpStatus.OK).body(apartmentService.save(apartmentModel));
+        return ResponseEntity.status(HttpStatus.CREATED).body(apartmentService.save(apartmentModel));
     }
 
     @GetMapping

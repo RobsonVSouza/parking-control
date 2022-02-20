@@ -3,6 +3,7 @@ package com.api.parkingcontrol.models;
 
 import java.io.Serializable;
 import java.util.UUID;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,7 +38,7 @@ public class CarModel implements Serializable {
     @Column(nullable = false, length = 70)
     private String colorCar;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private UserModel driver;
 
 }

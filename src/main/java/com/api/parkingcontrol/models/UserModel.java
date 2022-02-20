@@ -3,6 +3,7 @@ package com.api.parkingcontrol.models;
 
 import java.io.Serializable;
 import java.util.UUID;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,10 +35,10 @@ public class UserModel implements Serializable {
     @Column
     private String password;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private ApartmentModel apartmentModel;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private CarModel carModel;
 
 }

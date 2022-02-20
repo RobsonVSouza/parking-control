@@ -1,6 +1,7 @@
 package dtos;
 
 
+import com.api.parkingcontrol.models.UserModel;
 import javax.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,4 +21,6 @@ public class CarDto {
 
     @NotBlank
     private String colorCar;
+
+    private UserModel driver;
 }

@@ -3,6 +3,7 @@ package com.api.parkingcontrol.models;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,7 +31,7 @@ public class ParkingSpotModel implements Serializable {
     @Column(nullable = false)
     private LocalDateTime registrationDate;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private ApartmentModel apartmentModel;
 
 }
